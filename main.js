@@ -1,8 +1,22 @@
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    header.classList.toggle("sticky", window.scrollY > 0);
+});
+
+function toggleMenu() {
+    const menuToggle = document.querySelector('.menuToggle');
+    const navigation = document.querySelector('.navigation');
+
+    menuToggle.classList.toggle('active');
+    navigation.classList.toggle('active');
+}
+
+
+
 const form = document.getElementById('form');
-const username = document.getElementById('username');
+const usuario = document.getElementById('username');
 const email = document.getElementById('email');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+const comentario = document.getElementById('comentario');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -12,37 +26,28 @@ form.addEventListener('submit', e => {
 
 function checkInputs() {
     // trim to remove the whitespaces
-    const usernameValue = username.value.trim();
+    const usuarioValue = usuario.value.trim();
     const emailValue = email.value.trim();
-    const passwordValue = password.value.trim();
-    const password2Value = password2.value.trim();
+    const comentarioValue = comentario.value.trim();
 
-    if (usernameValue === '') {
-        setErrorFor(username, 'Nombre usuario no puede estar en blanco');
+    if (usuarioValue === '') {
+        setErrorFor(usuario, 'Debe ingresar un nombre de usuario');
     } else {
-        setSuccessFor(username);
+        setSuccessFor(usuario);
     }
 
     if (emailValue === '') {
-        setErrorFor(email, 'Correo no puede estar en blanco');
+        setErrorFor(email, 'Debe ingresar un Email');
     } else if (!isEmail(emailValue)) {
-        setErrorFor(email, 'Correo no valido');
+        setErrorFor(email, 'No ingreso un email válido');
     } else {
         setSuccessFor(email);
     }
 
-    if (passwordValue === '') {
-        setErrorFor(password, 'Contraseña no puede estar en blanco');
+    if (comentarioValue === '') {
+        setErrorFor(comentario, 'Debe ingresar un comentario');
     } else {
-        setSuccessFor(password);
-    }
-
-    if (password2Value === '') {
-        setErrorFor(password2, 'Contraseña no puede estar en blanco');
-    } else if (passwordValue !== password2Value) {
-        setErrorFor(password2, 'Las contraseñas no coinciden');
-    } else {
-        setSuccessFor(password2);
+        setSuccessFor(comentario);
     }
 }
 
